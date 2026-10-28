@@ -8,10 +8,12 @@ import PublicRoute from "./PublicRoute";
 import Login from "@/view/auth/Login";
 import Register from "@/view/auth/Register";
 import NotFound from "@/view/shared/NotFound";
+import PlaceholderPage from "@/view/shared/PlaceholderPage";
 
 import AdminDashboard from "@/view/admin/Dashboard";
 import AdminZones from "@/view/admin/Zones";
 import AdminConfiguracion from "@/view/admin/Configuracion";
+import AdminPerfilEmpresa from "@/view/admin/PerfilEmpresa";
 
 import ClienteInicio from "@/view/cliente/Inicio";
 import ClientePedidos from "@/view/cliente/Pedidos";
@@ -51,10 +53,18 @@ export default function AppRouter() {
             <Route path="/admin" element={<AdminDashboard />} />
 
             <Route path="/admin/zonas" element={<AdminZones />} />
-            <Route
-              path="/admin/configuracion"
-              element={<AdminConfiguracion />}
-            />
+            <Route path="/admin/configuracion" element={<AdminConfiguracion />}>
+              <Route
+                index
+                element={
+                  <PlaceholderPage
+                    title="Configuración"
+                    description="Selecciona una opción"
+                  />
+                }
+              />
+              <Route path="perfil" element={<AdminPerfilEmpresa />} />
+            </Route>
           </Route>
         </Route>
 
